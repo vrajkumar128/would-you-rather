@@ -5,13 +5,13 @@ import {
   _saveQuestionAnswer
 } from './_DATA';
 
-export const getInitialData = async () => {
-  const [users, questions] = await Promise.all([
-    _getUsers(), _getQuestions()
-  ]);
+// Retrieve initial data
+export const getInitialData = () => Promise.all([
+  _getUsers(), _getQuestions()
+]);
 
-  return {
-    users,
-    questions
-  };
-}
+// Save a question to database
+export const saveQuestion = (question) => _saveQuestion(question);
+
+// Save a question answer to database
+export const saveQuestionAnswer = (answer) => _saveQuestionAnswer(answer);
