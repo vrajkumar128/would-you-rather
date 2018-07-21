@@ -1,0 +1,21 @@
+header {
+  background-color: #0D95F2;
+  nav {
+    display: flex;
+    align-items: center;
+    ul {
+      display: flex;
+      list-style: none;
+      padding-left: 0;
+      li {
+        margin-left: 1rem;
+        a {
+          color: rgba(238, 238, 238, 0.8);
+          &.active, &:hover {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}
