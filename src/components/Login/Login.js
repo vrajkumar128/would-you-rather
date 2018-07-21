@@ -8,11 +8,11 @@ const Login = ({ dispatch, users }) => {
 
   // Render list of users
   const renderUsers = () => (
-    Object.keys(users).map(user => (
-      <li key={users[user].id} onClick={handleClick}>
-        <img src={users[user].avatarURL} alt={`The avatar of ${users[user].name}`} />
+    Object.keys(users).map(userId => (
+      <li key={users[userId].id} onClick={handleClick}>
+        <img src={users[userId].avatarURL} alt={`The avatar of ${users[userId].name}`} />
         <div className="userName">
-          <h3>{users[user].name}</h3>
+          <h3>{users[userId].name}</h3>
         </div>
       </li>
     ))
