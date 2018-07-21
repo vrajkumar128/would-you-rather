@@ -1,17 +1,18 @@
 header {
   background-color: #0D95F2;
+  display: flex;
+  align-items: center;
   nav {
-    display: flex;
-    align-items: center;
     ul {
-      display: flex;
       list-style: none;
       padding-left: 0;
       li {
+        display: inline-block;
         margin-left: 1rem;
         a {
           color: rgba(238, 238, 238, 0.8);
-          &.active, &:hover {
+          &.active,
+            &:hover {
             color: white;
           }
         }
