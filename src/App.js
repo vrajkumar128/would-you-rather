@@ -9,12 +9,14 @@ class App extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <Login />
-      </div>
-    );
+    const { authedUser } = this.props;
+
+    return authedUser ? <p>logged in!</p> : <Login />;
   }
 }
 
-export default connect()(App);
+const mapStateToProps = ({ authedUser }) => ({
+  authedUser
+});
+
+export default connect(mapStateToProps)(App);

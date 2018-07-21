@@ -2,6 +2,7 @@ header {
   background-color: #0D95F2;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   nav {
     ul {
       list-style: none;
@@ -17,6 +18,22 @@ header {
           }
         }
       }
+    }
+  }
+  .authedUser {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+    color: white;
+    img {
+      height: 32px;
+      width: 32px;
+      border-radius: 100%;
+      margin-right: 0.5rem;
+    }
+    .text {
+      font-weight: normal !important;
+      margin-right: 0.25rem;
     }
   }
 }
