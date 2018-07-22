@@ -8,6 +8,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducer from './reducers';
 import middleware from './middleware';
+import QuestionPage from './components/QuestionPage/QuestionPage';
 
 // Create Redux store
 const store = createStore(reducer, middleware);
@@ -18,6 +19,7 @@ ReactDOM.render(
       <Fragment>
         <Header />
         <Route exact path="/" component={App} />
+        <Route path="/questions/:question_id" component={QuestionPage} />
       </Fragment>
     </Router>
   </Provider>,

@@ -14,29 +14,34 @@
       list-style: none;
       padding-left: 0;
       margin-top: 2rem;
-      li {
-        width: 100%;
-        display: flex;
-        align-items: center;
+      .user {
         margin-top: 1rem;
-        cursor: pointer;
-        border-radius: 50px;
         &:first-child {
           margin-top: 0;
         }
-        &:hover {
-          background-color: rgba(13, 149, 242, 0.8);
-          color: white;
-          transition: all 0.25s;
+        &:last-child .divider {
+          display: none;
         }
-        img {
-          height: 64px;
-          width: 64px;
-          border-radius: 100%;
-        }
-        .userName {
+        li {
           width: 100%;
-          text-align: center;
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+          border-radius: 50px;
+          &:hover {
+            background-color: rgba(13, 149, 242, 0.8);
+            color: white;
+            transition: all 0.25s;
+          }
+          img {
+            height: 64px;
+            width: 64px;
+            border-radius: 100%;
+          }
+          .userName {
+            width: 100%;
+            text-align: center;
+          }
         }
       }
     }

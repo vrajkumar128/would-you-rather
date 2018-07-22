@@ -1,20 +1,24 @@
 import React from 'react';
 import './Login.min.css';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { setAuthedUser } from '../../actions/authedUser';
-import { Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
+import { Form, Grid, Header, Message, Segment, Divider } from 'semantic-ui-react';
 
 const Login = ({ dispatch, users }) => {
 
   // Render list of users
   const renderUsers = () => (
     Object.keys(users).map(userId => (
-      <li key={users[userId].id} onClick={handleClick}>
-        <img src={users[userId].avatarURL} alt={`The avatar of ${users[userId].name}`} />
-        <div className="userName">
-          <h3>{users[userId].name}</h3>
-        </div>
-      </li>
+      <div className="user">
+        <li key={users[userId].id} onClick={handleClick}>
+          <img src={users[userId].avatarURL} alt={`The avatar of ${users[userId].name}`} />
+          <div className="userName">
+            <h3>{users[userId].name}</h3>
+          </div>
+        </li>
+        <Divider />
+      </div>
     ))
   );
 
@@ -40,7 +44,7 @@ const Login = ({ dispatch, users }) => {
             </Segment>
           </Form>
           <Message>
-            New user? <a href='#'>Sign Up</a>
+            New user? <NavLink to="/signup">Sign Up</NavLink>
           </Message>
         </Grid.Column>
       </Grid>

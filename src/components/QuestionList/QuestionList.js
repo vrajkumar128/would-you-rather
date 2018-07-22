@@ -1,6 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Question from '../Question/Question';
+import { Container, Menu } from 'semantic-ui-react';
+import Slider from 'react-slick';
+import './QuestionList.min.css';
 
 class QuestionList extends React.Component {
   state = {
@@ -8,10 +12,10 @@ class QuestionList extends React.Component {
   }
 
   // Indicate need to display unanswered questions
-  displayUnansweredQuestions = () => {
+  displayUnanswered = () => {
     this.setState({
       displayAnswered: false
-    })
+    });
   }
 
   // Indicate need to display answered questions
@@ -34,8 +38,10 @@ class QuestionList extends React.Component {
       !this.getAnsweredQuestionIds().includes(questionId));
 
     return (
-      unansweredQuestionIds.map(questionId => (
-        <Question question={questions[questionId]} />
+      unansweredQuestionIds.map(unansweredQuestionId => (
+        <Link to={`questions/${unansweredQuestionId}`}>
+          <Question question={questions[unansweredQuestionId]} />
+        </Link>
       ))
     );
   }
@@ -48,7 +54,9 @@ class QuestionList extends React.Component {
 
     return (
       answeredQuestionIds.map(answeredQuestionId => (
-        <Question question={questions[answeredQuestionId]} />
+        <Link to={`questions/${answeredQuestionId}`}>
+          <Question question={questions[answeredQuestionId]} />
+        </Link>
       ))
     );
   }
@@ -57,13 +65,31 @@ class QuestionList extends React.Component {
     const { displayAnswered } = this.state;
 
     return (
-      <div>
-        {displayAnswered ? this.renderAnsweredQuestions() : this.renderUnansweredQuestions()}
-      </div>
+      <Container className="question-list">
+        <Menu tabular>
+          <Menu.Item name='unanswered' active={!displayAnswered} onClick={this.displayUnanswered} />
+          <Menu.Item name='answered' active={displayAnswered} onClick={this.displayAnswered} />
+        </Menu>
+        <h1>Would You Rather</h1>
+        {displayAnswered
+          ? (
+            <Slider infinite={false}>
+              {this.renderAnsweredQuestions()}
+            </Slider>
+            )
+          : (
+            <Slider infinite={false}>
+              {this.renderUnansweredQuestions()}
+            </Slider>
+            )
+          }
+      </Container>
     );
   }
 };
 
+// Grab data from state as props
 const mapStateToProps = (state) => state;
 
+// Connect component to Redux store
 export default connect(mapStateToProps)(QuestionList);

@@ -1,14 +1,21 @@
 import React from 'react';
-import { Card } from 'semantic-ui-react';
+import { Card, Icon } from 'semantic-ui-react';
+import './Question.min.css';
 
-const Question = (props) => (
-  <Card>
-    <h3>Would You Rather</h3>
-    <ul>
-      <li>{props.question.optionOne.text}</li>
-      <li>{props.question.optionTwo.text}</li>
-    </ul>
-  </Card>
+const Question = ({ question }) => (
+  <div className="question">
+    <div class="options">
+      <div class="option-one">
+        <p>{question.optionOne.text}</p>
+      </div>
+      <div class="question-mark">
+        <Icon name="question" />
+      </div>
+      <div class="option-two">
+        <p>{question.optionTwo.text}</p>
+      </div>
+    </div>
+  </div>
 );
 
 export default Question;
