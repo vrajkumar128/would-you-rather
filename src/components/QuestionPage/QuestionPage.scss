@@ -18,6 +18,7 @@
 
         a {
           color: #9A9791;
+
           &:hover {
             color: #D7D5D2;
           }
@@ -38,14 +39,38 @@
       margin: 2.5rem 1rem;
 
       .option-one,
-      .option-two {
+        .option-two {
         width: 45%;
+
+        p {
+          margin-bottom: 0;
+        }
+
+        span {
+          font-size: 0.75rem;
+        }
+
+        &:hover {
+          color: rgba(13, 149, 242, 0.8);
+          cursor: pointer;
+        }
+      }
+
+      .answered {
+        &:hover {
+          color: black !important;
+          cursor: default !important;
+        }
       }
 
       .icon {
         width: 10%;
         font-size: 4rem;
         margin: 0 2.5rem;
+
+        .caret {
+          color: green;
+        }
       }
     }
 

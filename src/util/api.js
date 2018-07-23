@@ -2,10 +2,11 @@ import {
   _getUsers,
   _getQuestions,
   _saveQuestion,
-  _saveQuestionAnswer
+  _saveQuestionAnswer,
+  _saveUser,
 } from './_DATA';
 
-// Retrieve initial data
+// Return initial data from database
 export const getInitialData = () => Promise.all([
   _getUsers(), _getQuestions()
 ]);
@@ -14,4 +15,7 @@ export const getInitialData = () => Promise.all([
 export const saveQuestion = (question) => _saveQuestion(question);
 
 // Save a question answer to database
-export const saveQuestionAnswer = (answer) => _saveQuestionAnswer(answer);
+export const saveQuestionAnswer = (info) => _saveQuestionAnswer(info);
+
+// Save a user to database
+export const saveUser = (user) => _saveUser(user);

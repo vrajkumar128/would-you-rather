@@ -1,3 +1,5 @@
+import { formatQuestion } from './helpers.js';
+
 let users = {
   sarahedo: {
     id: 'sarahedo',
@@ -28,7 +30,7 @@ let users = {
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',
-      "6ni6ok3ym7mf1p33lnez": 'optionOne'
+      "6ni6ok3ym7mf1p33lnez": 'optionTwo'
     },
     questions: ['6ni6ok3ym7mf1p33lnez', 'xj352vofupe1dqz9emx13r'],
   }
@@ -58,7 +60,7 @@ let questions = {
     },
     optionTwo: {
       votes: ['johndoe', 'sarahedo'],
-      text: 'become a supervillian'
+      text: 'become a supervillain'
     }
   },
   "am8ehyc8byjqgar0jgpub9": {
@@ -115,40 +117,23 @@ let questions = {
   },
 }
 
-function generateUID () {
-  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
-}
-
-export function _getUsers () {
-  return new Promise((res, rej) => {
+// Return users from database
+export const _getUsers = () => (
+  new Promise((res, rej) => {
     setTimeout(() => res({...users}), 1000)
   })
-}
+);
 
-export function _getQuestions () {
-  return new Promise((res, rej) => {
+// Return questions from database
+export const _getQuestions = () => (
+  new Promise((res, rej) => {
     setTimeout(() => res({...questions}), 1000)
   })
-}
+);
 
-function formatQuestion ({ optionOneText, optionTwoText, author }) {
-  return {
-    id: generateUID(),
-    timestamp: Date.now(),
-    author,
-    optionOne: {
-      votes: [],
-      text: optionOneText,
-    },
-    optionTwo: {
-      votes: [],
-      text: optionTwoText,
-    }
-  }
-}
-
-export function _saveQuestion (question) {
-  return new Promise((res, rej) => {
+// Save a new question to database
+export const _saveQuestion = (question) => (
+  new Promise((res, rej) => {
     const authedUser = question.author;
     const formattedQuestion = formatQuestion(question);
 
@@ -169,22 +154,12 @@ export function _saveQuestion (question) {
       res(formattedQuestion)
     }, 1000)
   })
-}
+);
 
-export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
-  return new Promise((res, rej) => {
+// Save an answer to the corresponding question in the database
+export const _saveQuestionAnswer = ({ authedUser, qid, answer }) => (
+  new Promise((res, rej) => {
     setTimeout(() => {
-      users = {
-        ...users,
-        [authedUser]: {
-          ...users[authedUser],
-          answers: {
-            ...users[authedUser].answers,
-            [qid]: answer
-          }
-        }
-      }
-
       questions = {
         ...questions,
         [qid]: {
@@ -196,7 +171,22 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
         }
       }
 
+      users = {
+        ...users,
+        [authedUser]: {
+          ...users[authedUser],
+          answers: {
+            ...users[authedUser].answers,
+            [qid]: answer
+          }
+        }
+      }
+
       res()
     }, 500)
   })
-}
+);
+
+export const _saveUser = (user) => {
+
+};

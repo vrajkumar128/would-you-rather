@@ -10,8 +10,8 @@ const Login = ({ dispatch, users }) => {
   // Render list of users
   const renderUsers = () => (
     Object.keys(users).map(userId => (
-      <div className="user">
-        <li key={users[userId].id} onClick={handleClick}>
+      <div key={users[userId].id} className="user">
+        <li onClick={handleClick}>
           <img src={users[userId].avatarURL} alt={`The avatar of ${users[userId].name}`} />
           <div className="userName">
             <h3>{users[userId].name}</h3>

@@ -38,11 +38,13 @@ class QuestionList extends React.Component {
       !this.getAnsweredQuestionIds().includes(questionId));
 
     return (
-      unansweredQuestionIds.map(unansweredQuestionId => (
-        <Link to={`questions/${unansweredQuestionId}`}>
-          <Question question={questions[unansweredQuestionId]} />
-        </Link>
-      ))
+      unansweredQuestionIds
+        ? unansweredQuestionIds.map(unansweredQuestionId => (
+            <Link key={unansweredQuestionId} to={`questions/${unansweredQuestionId}`}>
+              <Question question={questions[unansweredQuestionId]} />
+            </Link>
+          ))
+        : <p>No unanswered questions!</p>
     );
   }
 
@@ -53,11 +55,13 @@ class QuestionList extends React.Component {
       this.getAnsweredQuestionIds().includes(questionId));
 
     return (
-      answeredQuestionIds.map(answeredQuestionId => (
-        <Link to={`questions/${answeredQuestionId}`}>
-          <Question question={questions[answeredQuestionId]} />
-        </Link>
-      ))
+      answeredQuestionIds
+        ? answeredQuestionIds.map(answeredQuestionId => (
+            <Link key={answeredQuestionId} to={`questions/${answeredQuestionId}`}>
+              <Question question={questions[answeredQuestionId]} />
+            </Link>
+          ))
+        : <p>No answered questions!</p>
     );
   }
 
@@ -71,18 +75,9 @@ class QuestionList extends React.Component {
           <Menu.Item name='answered' active={displayAnswered} onClick={this.displayAnswered} />
         </Menu>
         <h1>Would You Rather</h1>
-        {displayAnswered
-          ? (
-            <Slider infinite={false}>
-              {this.renderAnsweredQuestions()}
-            </Slider>
-            )
-          : (
-            <Slider infinite={false}>
-              {this.renderUnansweredQuestions()}
-            </Slider>
-            )
-          }
+        <Slider infinite={false}>
+          {displayAnswered ? this.renderAnsweredQuestions() : this.renderUnansweredQuestions()}
+        </Slider>
       </Container>
     );
   }
