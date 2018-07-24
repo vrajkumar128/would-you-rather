@@ -9,14 +9,18 @@ import { Provider } from 'react-redux';
 import reducer from './reducers';
 import middleware from './middleware';
 import QuestionPage from './components/QuestionPage/QuestionPage';
+import LoadingBar from 'react-redux-loading-bar';
 
 // Create Redux store
 const store = createStore(reducer, middleware);
+
+// style={{ backgroundColor: "#0E82BE" }}
 
 ReactDOM.render(
   <Provider store={store}>
     <Router>
       <Fragment>
+        <LoadingBar />
         <Header />
         <Route exact path="/" component={App} />
         <Route path="/questions/:question_id" component={QuestionPage} />

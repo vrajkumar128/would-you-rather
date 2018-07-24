@@ -26,42 +26,44 @@ class QuestionList extends React.Component {
   }
 
   // Return an array of question IDs corresponding to questions that have been answered by the authedUser
-  getAnsweredQuestionIds = () => {
+  getAnsweredQids = () => {
     const { users, authedUser } = this.props;
     return Object.keys(users[authedUser].answers);
   }
 
   // Render questions that the authedUser has not answered
-  renderUnansweredQuestions = () => {
-    const { questions } = this.props;
-    const unansweredQuestionIds = Object.keys(questions).filter(questionId =>
-      !this.getAnsweredQuestionIds().includes(questionId));
+  renderUnansweredQs = () => {
+    const { questions, sortedQids } = this.props;
+    const unansweredQids = sortedQids.filter(qid =>
+      !this.getAnsweredQids().includes(qid)
+    );
 
     return (
-      unansweredQuestionIds
-        ? unansweredQuestionIds.map(unansweredQuestionId => (
-            <Link key={unansweredQuestionId} to={`questions/${unansweredQuestionId}`}>
-              <Question question={questions[unansweredQuestionId]} />
+      unansweredQids.length > 0
+        ? unansweredQids.map(unansweredQid => (
+            <Link key={unansweredQid} to={`questions/${unansweredQid}`}>
+              <Question question={questions[unansweredQid]} />
             </Link>
           ))
-        : <p>No unanswered questions!</p>
+        : <h2>No unanswered questions!</h2>
     );
   }
 
   // Render questions that the authedUser *has* answered
-  renderAnsweredQuestions = () => {
-    const { questions } = this.props;
-    const answeredQuestionIds = Object.keys(questions).filter(questionId =>
-      this.getAnsweredQuestionIds().includes(questionId));
+  renderAnsweredQs = () => {
+    const { questions, sortedQids } = this.props;
+    const answeredQids = sortedQids.filter(qid =>
+      this.getAnsweredQids().includes(qid)
+    );
 
     return (
-      answeredQuestionIds
-        ? answeredQuestionIds.map(answeredQuestionId => (
-            <Link key={answeredQuestionId} to={`questions/${answeredQuestionId}`}>
-              <Question question={questions[answeredQuestionId]} />
+      answeredQids.length > 0
+        ? answeredQids.map(answeredQid => (
+            <Link key={answeredQid} to={`questions/${answeredQid}`}>
+              <Question question={questions[answeredQid]} />
             </Link>
           ))
-        : <p>No answered questions!</p>
+        : <h2>No answered questions!</h2>
     );
   }
 
@@ -71,20 +73,42 @@ class QuestionList extends React.Component {
     return (
       <Container className="question-list">
         <Menu tabular>
-          <Menu.Item name='unanswered' active={!displayAnswered} onClick={this.displayUnanswered} />
-          <Menu.Item name='answered' active={displayAnswered} onClick={this.displayAnswered} />
+          <Menu.Item
+            name='unanswered'
+            active={!displayAnswered}
+            onClick={this.displayUnanswered}
+          />
+          <Menu.Item
+            name='answered'
+            active={displayAnswered}
+            onClick={this.displayAnswered}
+          />
         </Menu>
         <h1>Would You Rather</h1>
         <Slider infinite={false}>
-          {displayAnswered ? this.renderAnsweredQuestions() : this.renderUnansweredQuestions()}
+          {displayAnswered
+            ? this.renderAnsweredQs()
+            : this.renderUnansweredQs()
+          }
         </Slider>
       </Container>
     );
   }
-};
+}
 
 // Grab data from state as props
-const mapStateToProps = (state) => state;
+const mapStateToProps = ({ authedUser, users, questions }) => {
+  const qidArray = Object.keys(questions).map(qid => questions[qid].id);
+  const sortedQids = qidArray
+    .sort((a, b) => questions[b].timestamp - questions[a].timestamp);
+
+  return {
+    authedUser,
+    users,
+    questions,
+    sortedQids
+  };
+};
 
 // Connect component to Redux store
 export default connect(mapStateToProps)(QuestionList);
