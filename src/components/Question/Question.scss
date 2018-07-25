@@ -5,23 +5,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
   h1 {
     font-size: 2.5rem;
   }
+
   .options {
     font-size: 2rem;
     display: flex;
     height: 50%;
+
     .option-one,
       .option-two {
-        width: 45%;
-        p {
-          height: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
+      width: 45%;
+
+      p {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
+    }
+
     .question-mark {
       width: 10%;
       font-size: 4rem;

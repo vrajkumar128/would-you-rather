@@ -66,7 +66,7 @@ const renderOptions = (authedUser, users, question, dispatch) => (
       {alreadyAnswered(authedUser, users, question)
         && renderOptionOneResults(question)}
     </div>
-    <div className="icon">
+    <div className="center-icon">
       {renderIcon(authedUser, users, question)}
     </div>
     <div

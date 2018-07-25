@@ -1,46 +1,55 @@
 .login-form {
   text-align: center;
   height: 100%;
+
   .grid {
     max-width: 450px;
     height: 100%;
     display: flex;
     align-items: center;
     margin: 0 auto;
+
     h2 {
       color: #0D95F2;
     }
+
     ul {
       list-style: none;
       padding-left: 0;
       margin-top: 2rem;
+
       .user {
         margin-top: 1rem;
+
         &:first-child {
           margin-top: 0;
         }
+
         &:last-child .divider {
           display: none;
         }
+
         li {
           width: 100%;
           display: flex;
           align-items: center;
           cursor: pointer;
           border-radius: 50px;
+
           &:hover {
             background-color: rgba(13, 149, 242, 0.8);
             color: white;
             transition: all 0.25s;
           }
+
           img {
             height: 64px;
             width: 64px;
             border-radius: 100%;
           }
+
           .userName {
-            width: 100%;
-            text-align: center;
+            margin: 0 auto;
           }
         }
       }

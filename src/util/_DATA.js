@@ -1,5 +1,6 @@
 import { formatQuestion } from './helpers.js';
 
+// List of users
 let users = {
   sarahedo: {
     id: 'sarahedo',
@@ -36,6 +37,7 @@ let users = {
   }
 }
 
+// List of questions
 let questions = {
   "8xf0y6ziyjabvozdd253nd": {
     id: '8xf0y6ziyjabvozdd253nd',
@@ -187,6 +189,7 @@ export const _saveQuestionAnswer = ({ authedUser, qid, answer }) => (
   })
 );
 
+// Save a user to the database
 export const _saveUser = (user) => {
 
 };

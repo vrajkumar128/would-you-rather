@@ -1,0 +1,88 @@
+import React from 'react';
+import { handleAddQuestion } from '../../actions/shared';
+import { Card, Container, Button, Form } from 'semantic-ui-react';
+import './AddQuestion.min.css';
+import { connect } from 'react-redux';
+
+class AddQuestion extends React.Component {
+  state = {
+    optionOneText: "",
+    optionTwoText: ""
+  }
+
+  // Update this.state with user input
+  handleChange = (e, option) => {
+    const text = e.target.value;
+
+    if (option === "one") {
+      this.setState({
+        optionOneText: text
+      });
+    } else if (option === "two") {
+      this.setState({
+        optionTwoText: text
+      });
+    } else {
+      console.error("Error: invalid option");
+    }
+  }
+
+  // Submit new question
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { optionOneText, optionTwoText } = this.state;
+    const { authedUser, dispatch } = this.props;
+    const question = {
+      optionOneText,
+      optionTwoText,
+      author: authedUser
+    };
+
+    dispatch(handleAddQuestion(question));
+  }
+
+  render() {
+    const { optionOne, optionTwo } = this.state;
+
+    return (
+      <Container className="add-question">
+        <Card>
+          <Card.Content>
+            <h2>Would You Rather</h2>
+            <Form onSubmit={this.handleSubmit}>
+              <Form.Field>
+                <label>Option One</label>
+                <input
+                  name="optionOne"
+                  type="text"
+                  placeholder='Option One'
+                  value={optionOne}
+                  onChange={(e) => this.handleChange(e, "one")}
+                />
+              </Form.Field>
+              <Form.Field>
+                <label>Option Two</label>
+                <input
+                  name="optionOne"
+                  type="text"
+                  placeholder='Option Two'
+                  value={optionTwo}
+                  onChange={(e) => this.handleChange(e, "two")}
+                />
+              </Form.Field>
+              <Button type='submit' size="large" color="blue">Submit</Button>
+            </Form>
+          </Card.Content>
+        </Card>
+      </Container>
+    );
+  }
+}
+
+// Grab data from Redux store as props
+const mapStateToProps = ({ authedUser }) => ({
+  authedUser
+});
+
+// Connect component to Redux store
+export default connect(mapStateToProps)(AddQuestion);

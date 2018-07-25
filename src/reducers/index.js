@@ -4,6 +4,7 @@ import questions from './questions';
 import authedUser from './authedUser';
 import { loadingBarReducer } from 'react-redux-loading-bar';
 
+// Create root reducer
 export default combineReducers({
   users,
   questions,

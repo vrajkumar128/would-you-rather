@@ -3,15 +3,19 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   nav {
     ul {
       list-style: none;
       padding-left: 0;
+
       li {
         display: inline-block;
         margin-left: 1rem;
+
         a {
           color: rgba(238, 238, 238, 0.8);
+
           &.active,
             &:hover {
             color: white;
@@ -20,17 +24,20 @@ header {
       }
     }
   }
+
   .authedUser {
     display: flex;
     align-items: center;
     margin-right: 1rem;
     color: white;
+
     img {
       height: 32px;
       width: 32px;
       border-radius: 100%;
       margin-right: 0.5rem;
     }
+
     .text {
       font-weight: normal !important;
       margin-right: 0.25rem;

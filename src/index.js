@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import reducer from './reducers';
 import middleware from './middleware';
 import QuestionPage from './components/QuestionPage/QuestionPage';
+import AddQuestion from './components/AddQuestion/AddQuestion';
 import LoadingBar from 'react-redux-loading-bar';
 
 // Create Redux store
@@ -24,6 +25,7 @@ ReactDOM.render(
         <Header />
         <Route exact path="/" component={App} />
         <Route path="/questions/:question_id" component={QuestionPage} />
+        <Route path="/add" component={AddQuestion} />
       </Fragment>
     </Router>
   </Provider>,

@@ -1,0 +1,18 @@
+.add-question {
+  height: 100%;
+  text-align: center;
+  .card {
+    width: 50%;
+    height: 20rem;
+    margin: 5rem auto !important;
+    .form {
+      margin: 0 2rem;
+      .field {
+        text-align: left;
+        label {
+          font-size: 1.05rem;
+        }
+      }
+    }
+  }
+}

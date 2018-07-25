@@ -4,41 +4,59 @@
 .question-list {
   margin-top: 5rem;
   height: 40%;
+
   .menu {
     justify-content: center;
   }
+
   h1 {
     text-align: center;
     font-size: 4rem;
   }
+
   .slick-slider {
     height: 100%;
-    .slick-prev,
-      .slick-next {
+
+    .slick-next,
+      .slick-prev {
         &:before {
           color: black;
           font-size: 50px;
-      }
+        }
     }
+
     .slick-prev:before {
       position: relative;
       right: 150%;
     }
+
     .slick-list {
       height: 100%;
+
       .slick-track {
         height: 100%;
+
         .slick-slide {
           height: 100%;
+
           & > div {
             height: 100%;
             display: flex;
             justify-content: center;
+
+            h2 {
+              text-align: center;
+              height: 2rem;
+              align-self: center;
+              padding-top: 2rem;
+            }
+
             a {
               .card {
                 width: 100% !important;
                 margin-top: 0 !important;
                 margin-bottom: 0 !important;
+
                 .options {
                   font-size: 1.5rem;
                 }

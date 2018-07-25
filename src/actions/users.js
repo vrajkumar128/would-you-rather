@@ -3,6 +3,7 @@ import { saveUser } from '../util/api';
 // Map strings to constants (better typo detection)
 export const RECEIVE_USERS = "RECEIVE_USERS";
 export const ADD_USER = "ADD_USER";
+export const ADD_USER_QUESTION = "ADD_USER_QUESTON";
 export const ADD_USER_ANSWER = "ADD_USER_ANSWER";
 
 // Create a RECEIVE_USERS action
@@ -15,6 +16,13 @@ export const receiveUsers = (users) => ({
 const addUser = (user) => ({
   type: ADD_USER,
   user
+});
+
+// Create an ADD_USER_QUESTION action
+export const addUserQuestion = ({ author, id }) => ({
+  type: ADD_USER_QUESTION,
+  author,
+  id
 });
 
 // Create an ADD_QUESTION_ANSWER actions

@@ -1,5 +1,3 @@
-import { saveQuestion } from '../util/api';
-
 // Map strings to constants (better typo detection)
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
 export const ADD_QUESTION = "ADD_QUESTION";
@@ -12,7 +10,7 @@ export const receiveQuestions = (questions) => ({
 });
 
 // Create an ADD_QUESTION action
-const addQuestion = (question) => ({
+export const addQuestion = (question) => ({
   type: ADD_QUESTION,
   question
 });
@@ -24,10 +22,3 @@ export const addQuestionAnswer = ({ authedUser, qid, answer }) => ({
   qid,
   answer
 });
-
-// Add a question to the database
-export const handleAddQuestion = (question) => (
-  async (dispatch) => {
-
-  }
-);

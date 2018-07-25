@@ -1,3 +1,4 @@
+// Logging middleware
 export default (store) => (next) => (action) => {
   console.group(action.type)
     console.log("The action is:", action);

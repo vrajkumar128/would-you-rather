@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleInitialData } from './actions/shared';
 import Login from './components/Login/Login';
