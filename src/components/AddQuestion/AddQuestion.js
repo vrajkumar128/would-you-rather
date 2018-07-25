@@ -1,13 +1,16 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { handleAddQuestion } from '../../actions/shared';
 import { Card, Container, Button, Form } from 'semantic-ui-react';
 import './AddQuestion.min.css';
 import { connect } from 'react-redux';
+import Login from '../Login/Login';
 
 class AddQuestion extends React.Component {
   state = {
     optionOneText: "",
-    optionTwoText: ""
+    optionTwoText: "",
+    toHome: false
   }
 
   // Update this.state with user input
@@ -38,11 +41,23 @@ class AddQuestion extends React.Component {
       author: authedUser
     };
 
-    dispatch(handleAddQuestion(question));
+    dispatch(handleAddQuestion(question))
+    this.setState({
+      toHome: true
+    });
   }
 
   render() {
-    const { optionOne, optionTwo } = this.state;
+    const { optionOne, optionTwo, toHome } = this.state;
+    const { authedUser } = this.props;
+
+    if (!authedUser) {
+      return <Login />;
+    }
+
+    if (toHome) {
+      return <Redirect to="/" />;
+    }
 
     return (
       <Container className="add-question">

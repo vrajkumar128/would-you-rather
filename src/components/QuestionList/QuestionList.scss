@@ -17,6 +17,10 @@
   .slick-slider {
     height: 100%;
 
+    .slick-dots {
+      bottom: -100px;
+    }
+
     .slick-next,
       .slick-prev {
         &:before {

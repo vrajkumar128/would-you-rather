@@ -5,6 +5,7 @@ import Question from '../Question/Question';
 import { Container, Menu } from 'semantic-ui-react';
 import Slider from 'react-slick';
 import './QuestionList.min.css';
+import Login from '../Login/Login';
 
 class QuestionList extends React.Component {
   state = {
@@ -69,6 +70,11 @@ class QuestionList extends React.Component {
 
   render() {
     const { displayAnswered } = this.state;
+    const { authedUser } = this.props;
+
+    if (!authedUser) {
+      return <Login />;
+    }
 
     return (
       <Container className="question-list">
@@ -85,7 +91,7 @@ class QuestionList extends React.Component {
           />
         </Menu>
         <h1>Would You Rather</h1>
-        <Slider infinite={false}>
+        <Slider infinite={false} dots={true}>
           {displayAnswered
             ? this.renderAnsweredQs()
             : this.renderUnansweredQs()

@@ -21,13 +21,13 @@ const renderPages = () => (
   ))
 );
 
-// Log out the authedUser and redirect to /
+// Log out the current user and redirect to /
 const handleClick = (dispatch, history) => {
   dispatch(unsetAuthedUser());
   history.push('/');
 };
 
-// Render the authedUser
+// Display the current user
 const renderAuthedUser = (authedUser, users, dispatch, history) => (
   <div className="authedUser">
     <img src={users[authedUser].avatarURL} alt={`The avatar of ${users[authedUser].name}`} />

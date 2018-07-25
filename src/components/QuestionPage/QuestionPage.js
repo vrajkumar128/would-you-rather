@@ -4,13 +4,14 @@ import { Card, Icon, Container } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { handleAddQuestionAnswer } from '../../actions/shared';
 import "./QuestionPage.min.css";
+import Login from '../Login/Login';
 
 // Calculate total number of votes associated with the question
 const totalVotes = (question) => (
   question.optionOne.votes.length + question.optionTwo.votes.length
 );
 
-// If one of the options has already been selected by the authedUser, return it
+// If one of the options has already been selected by the current user, return it
 const alreadyAnswered = (authedUser, users, question) => {
   if (Object.keys(users[authedUser].answers).includes(question.id)) {
     return users[authedUser].answers[question.id];
@@ -80,7 +81,7 @@ const renderOptions = (authedUser, users, question, dispatch) => (
   </div>
 );
 
-// If the authedUser has not already answered the question, submit option one as the authedUser's answer
+// If the current user has not already answered the question, submit option one as their answer
 const submitOptionOne = (authedUser, users, question, dispatch) => {
   if (Object.keys(users[authedUser].answers).includes(question.id)) {
     return;
@@ -95,7 +96,7 @@ const submitOptionOne = (authedUser, users, question, dispatch) => {
   dispatch(handleAddQuestionAnswer(info));
 };
 
-// If the authedUser has not already answered the question, submit option two as the authedUser's answer
+// If the current user has not already answered the question, submit option two as their answer
 const submitOptionTwo = (authedUser, users, question, dispatch) => {
   if (Object.keys(users[authedUser].answers).includes(question.id)) {
     return;
@@ -111,38 +112,49 @@ const submitOptionTwo = (authedUser, users, question, dispatch) => {
 };
 
 // QuestionPage component
-const QuestionPage = ({ authedUser, users, question, author, dispatch }) => (
-  <Container className="question-page">
-    <Card>
-      <div className="card-header">
-        <div className="back">
-          <Link to="/">
-            <Icon name="arrow left" size="large" />
-            <span>back</span>
-          </Link>
+const QuestionPage = ({ authedUser, users, question, author, dispatch }) => {
+  if (!authedUser) {
+    return <Login />;
+  }
+
+  if (!question) {
+    return <p>404: Poll not found</p>;
+  }
+
+  return (
+    <Container className="question-page">
+      <Card>
+        <div className="card-header">
+          <div className="back">
+            <Link to="/">
+              <Icon name="arrow left" size="large" />
+              <span>back</span>
+            </Link>
+          </div>
+          <h1>Would You Rather</h1>
         </div>
-        <h1>Would You Rather</h1>
-      </div>
-      {renderOptions(authedUser, users, question, dispatch)}
-      <Card.Content extra>
-        <img src={author.avatarURL} alt={`The avatar of ${author.name}`} />
-        <p>posted by {author.name}</p>
-      </Card.Content>
-    </Card>
-  </Container>
-);
+        {renderOptions(authedUser, users, question, dispatch)}
+        <Card.Content extra>
+          <img src={author.avatarURL} alt={`The avatar of ${author.name}`} />
+          <p>posted by {author.name}</p>
+        </Card.Content>
+      </Card>
+    </Container>
+  );
+};
 
 // Grab data from Redux store as props
-const mapStateToProps = ({ users, questions, authedUser }, ownProps) => {
+const mapStateToProps = ({ authedUser, users, questions }, ownProps) => {
   const { question_id } = ownProps.match.params;
   const question = questions[question_id];
-  const author = users[question.author];
 
   return {
-    users,
     authedUser,
+    users,
     question,
-    author
+    author: !question
+      ? null
+      : users[question.author]
   };
 };
 

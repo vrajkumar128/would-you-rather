@@ -1,9 +1,13 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
+import React, { Fragment } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleInitialData } from './actions/shared';
-import Login from './components/Login/Login';
+import Header from './components/Header/Header';
 import QuestionList from './components/QuestionList/QuestionList';
+import AddQuestion from './components/AddQuestion/AddQuestion';
+import QuestionPage from './components/QuestionPage/QuestionPage';
+import LoadingBar from 'react-redux-loading-bar';
+import NotFound from './components/NotFound/NotFound';
 
 class App extends React.Component {
   componentDidMount() {
@@ -12,15 +16,22 @@ class App extends React.Component {
   }
 
   render() {
-    const { authedUser } = this.props;
-    return authedUser ? <QuestionList /> : <Login />;
+    return (
+      <Router>
+        <Fragment>
+          <LoadingBar />
+          <Header />
+          <Switch>
+            <Route exact path="/" component={QuestionList} />
+            <Route path="/add" component={AddQuestion} />
+            <Route path="/questions/:question_id" component={QuestionPage} />
+            <Route component={NotFound} />
+          </Switch>
+        </Fragment>
+      </Router>
+    );
   }
 }
 
-// Grab data from Redux store as props
-const mapStateToProps = ({ authedUser }) => ({
-  authedUser
-});
-
 // Connect component to Redux store
-export default connect(mapStateToProps)(App);
+export default connect()(App);
