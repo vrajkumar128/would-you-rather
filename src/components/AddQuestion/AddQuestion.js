@@ -13,7 +13,7 @@ class AddQuestion extends React.Component {
     toHome: false
   }
 
-  // Update this.state with user input
+  // Update state with user input
   handleChange = (e, option) => {
     const text = e.target.value;
 
@@ -30,7 +30,7 @@ class AddQuestion extends React.Component {
     }
   }
 
-  // Submit new question
+  // Submit new question and redirect to /
   handleSubmit = (e) => {
     e.preventDefault();
     const { optionOneText, optionTwoText } = this.state;

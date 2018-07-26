@@ -41,11 +41,13 @@ class QuestionList extends React.Component {
 
     return (
       unansweredQids.length > 0
-        ? unansweredQids.map(unansweredQid => (
-            <Link key={unansweredQid} to={`questions/${unansweredQid}`}>
-              <Question question={questions[unansweredQid]} />
-            </Link>
-          ))
+        ? <Slider infinite={false} dots={true}>
+            {unansweredQids.map(unansweredQid => (
+              <Link key={unansweredQid} to={`questions/${unansweredQid}`}>
+                <Question question={questions[unansweredQid]} />
+              </Link>
+            ))}
+          </Slider>
         : <h2>No unanswered questions!</h2>
     );
   }
@@ -59,11 +61,13 @@ class QuestionList extends React.Component {
 
     return (
       answeredQids.length > 0
-        ? answeredQids.map(answeredQid => (
-            <Link key={answeredQid} to={`questions/${answeredQid}`}>
-              <Question question={questions[answeredQid]} />
-            </Link>
-          ))
+        ? <Slider infinite={false} dots={true}>
+            {answeredQids.map(answeredQid => (
+              <Link key={answeredQid} to={`questions/${answeredQid}`}>
+                <Question question={questions[answeredQid]} />
+              </Link>
+            ))}
+          </Slider>
         : <h2>No answered questions!</h2>
     );
   }
@@ -91,12 +95,10 @@ class QuestionList extends React.Component {
           />
         </Menu>
         <h1>Would You Rather</h1>
-        <Slider infinite={false} dots={true}>
-          {displayAnswered
-            ? this.renderAnsweredQs()
-            : this.renderUnansweredQs()
-          }
-        </Slider>
+        {displayAnswered
+          ? this.renderAnsweredQs()
+          : this.renderUnansweredQs()
+        }
       </Container>
     );
   }

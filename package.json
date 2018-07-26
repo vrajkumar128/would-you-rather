@@ -1,6 +1,7 @@
 {
-  "name": "wouldyourather",
-  "version": "0.1.0",
+  "name": "would-you-rather",
+  "version": "1.0.0",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "react": "^16.4.1",

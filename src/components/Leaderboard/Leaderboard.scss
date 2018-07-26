@@ -1,0 +1,24 @@
+.leaderboard {
+  margin-top: 5rem;
+  .grid {
+    .row {
+      .column {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .user {
+        text-align: center;
+        img {
+          width: 64px;
+          height: 64px;
+          border-radius: 100%;
+        }
+        span {
+          margin: 0 auto;
+          max-width: 50%;
+        }
+      }
+    }
+  }
+}

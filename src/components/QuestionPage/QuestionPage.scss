@@ -2,6 +2,7 @@
   display: flex !important;
   justify-content: center;
   height: 100%;
+  cursor: default;
 
   .card {
     margin-top: 5rem !important;
@@ -58,8 +59,8 @@
 
       .answered {
         &:hover {
-          color: unset !important;
-          cursor: default !important;
+          color: unset;
+          cursor: default;
         }
       }
 

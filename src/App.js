@@ -6,8 +6,9 @@ import Header from './components/Header/Header';
 import QuestionList from './components/QuestionList/QuestionList';
 import AddQuestion from './components/AddQuestion/AddQuestion';
 import QuestionPage from './components/QuestionPage/QuestionPage';
-import LoadingBar from 'react-redux-loading-bar';
+import Leaderboard from './components/Leaderboard/Leaderboard';
 import NotFound from './components/NotFound/NotFound';
+import LoadingBar from 'react-redux-loading-bar';
 
 class App extends React.Component {
   componentDidMount() {
@@ -24,6 +25,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" component={QuestionList} />
             <Route path="/add" component={AddQuestion} />
+            <Route path="/leaderboard" component={Leaderboard} />
             <Route path="/questions/:question_id" component={QuestionPage} />
             <Route component={NotFound} />
           </Switch>
