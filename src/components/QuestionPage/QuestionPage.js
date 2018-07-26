@@ -118,7 +118,7 @@ const QuestionPage = ({ authedUser, users, question, author, dispatch }) => {
   }
 
   if (!question) {
-    return <p>404: Poll not found</p>;
+    return <h1>404: Poll not found</h1>;
   }
 
   return (
@@ -147,6 +147,8 @@ const QuestionPage = ({ authedUser, users, question, author, dispatch }) => {
 const mapStateToProps = ({ authedUser, users, questions }, ownProps) => {
   const { question_id } = ownProps.match.params;
   const question = questions[question_id];
+
+  document.title = question_id;
 
   return {
     authedUser,

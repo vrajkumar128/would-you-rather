@@ -4,6 +4,13 @@ body {
   font-family: Lato, sans-serif;
 }
 
-body > div {
+#root {
   height: 90%;
+}
+
+/* 404 */
+#root > h1 {
+  text-align: center;
+  position: relative;
+  top: 45%;
 }

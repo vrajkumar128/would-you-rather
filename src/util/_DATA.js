@@ -1,4 +1,4 @@
-import { formatQuestion } from './helpers.js';
+import { formatUser, formatQuestion } from './helpers.js';
 
 // List of users
 let users = {
@@ -122,14 +122,31 @@ let questions = {
 // Return users from database
 export const _getUsers = () => (
   new Promise((res, rej) => {
-    setTimeout(() => res({...users}), 1000)
+    setTimeout(() => res({...users}), 1000);
   })
 );
 
 // Return questions from database
 export const _getQuestions = () => (
   new Promise((res, rej) => {
-    setTimeout(() => res({...questions}), 1000)
+    setTimeout(() => res({...questions}), 1000);
+  })
+);
+
+
+// Save a new user to database
+export const _saveUser = (user) => (
+  new Promise((res, rej) => {
+    const formattedUser = formatUser(user);
+
+    setTimeout(() => {
+      users = {
+        ...users,
+        [formattedUser.id]: formattedUser
+      };
+
+      res(formattedUser);
+    }, 1000);
   })
 );
 
@@ -143,7 +160,7 @@ export const _saveQuestion = (question) => (
       questions = {
         ...questions,
         [formattedQuestion.id]: formattedQuestion
-      }
+      };
 
       users = {
         ...users,
@@ -151,10 +168,10 @@ export const _saveQuestion = (question) => (
           ...users[authedUser],
           questions: users[authedUser].questions.concat([formattedQuestion.id])
         }
-      }
+      };
 
-      res(formattedQuestion)
-    }, 1000)
+      res(formattedQuestion);
+    }, 1000);
   })
 );
 
@@ -171,7 +188,7 @@ export const _saveQuestionAnswer = ({ authedUser, qid, answer }) => (
             votes: questions[qid][answer].votes.concat([authedUser])
           }
         }
-      }
+      };
 
       users = {
         ...users,
@@ -182,14 +199,9 @@ export const _saveQuestionAnswer = ({ authedUser, qid, answer }) => (
             [qid]: answer
           }
         }
-      }
+      };
 
-      res()
-    }, 500)
+      res();
+    }, 500);
   })
 );
-
-// Save a user to the database
-export const _saveUser = (user) => {
-
-};

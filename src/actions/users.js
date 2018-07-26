@@ -1,4 +1,5 @@
 import { saveUser } from '../util/api';
+import { showLoading, hideLoading } from 'react-redux-loading-bar';
 
 // Map strings to constants (better typo detection)
 export const RECEIVE_USERS = "RECEIVE_USERS";
@@ -34,8 +35,18 @@ export const addUserAnswer = ({ authedUser, qid, answer }) => ({
 });
 
 // Add a user to the database
-export const handleAddUser = (user) => (
+export const handleAddUser = (info) => (
   async (dispatch) => {
+    try {
+      dispatch(showLoading());
+      const formattedUser = await saveUser(info);
 
+      dispatch(addUser(formattedUser));
+      dispatch(hideLoading());
+    } catch (err) {
+      console.err("Error:", err);
+      dispatch(hideLoading());
+      alert('There was an error adding the user. Please try again');
+    }
   }
 );

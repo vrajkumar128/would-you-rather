@@ -4,6 +4,7 @@ import { RECEIVE_USERS, ADD_USER, ADD_USER_QUESTION, ADD_USER_ANSWER } from '../
 export default (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_USERS:
+
       // Return users
       return {
         ...state,
@@ -11,9 +12,12 @@ export default (state = {}, action) => {
       };
 
     case ADD_USER:
+      const { user } = action;
+
       // Add a user
       return {
-
+        ...state,
+        [user.id]: user
       };
 
     case ADD_USER_QUESTION:

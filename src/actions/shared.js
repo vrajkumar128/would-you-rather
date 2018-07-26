@@ -6,10 +6,12 @@ import { showLoading, hideLoading } from 'react-redux-loading-bar';
 // Retrieve initial data from database
 export const handleInitialData = () => (
   async (dispatch) => {
+    dispatch(showLoading());
     const [users, questions] = await getInitialData();
 
     dispatch(receiveUsers(users));
     dispatch(receiveQuestions(questions));
+    dispatch(hideLoading());
   }
 );
 
@@ -24,7 +26,7 @@ export const handleAddQuestion = (info) => (
       dispatch(addUserQuestion(question));
       dispatch(hideLoading());
     } catch (err) {
-      console.error("Error: ", err);
+      console.error("Error:", err);
       dispatch(hideLoading());
       alert("There was an error submitting the poll. Please try again")
     }

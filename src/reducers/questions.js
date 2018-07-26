@@ -2,10 +2,9 @@ import { RECEIVE_QUESTIONS, ADD_QUESTION, ADD_QUESTION_ANSWER } from '../actions
 
 // Questions reducer
 export default (state = {}, action) => {
-  const { authedUser, question, qid, answer} = action;
-
   switch (action.type) {
     case RECEIVE_QUESTIONS:
+
       // Return questions
       return {
         ...state,
@@ -13,6 +12,8 @@ export default (state = {}, action) => {
       };
 
     case ADD_QUESTION:
+      const { question } = action;
+
       // Add a question
       return {
         ...state,
@@ -20,6 +21,8 @@ export default (state = {}, action) => {
       };
 
     case ADD_QUESTION_ANSWER:
+      const { authedUser, qid, answer } = action;
+
       // Add an answer to a question
       return {
         ...state,

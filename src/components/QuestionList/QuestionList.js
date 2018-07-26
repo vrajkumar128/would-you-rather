@@ -80,6 +80,8 @@ class QuestionList extends React.Component {
       return <Login />;
     }
 
+    document.title = "Would You Rather?"
+
     return (
       <Container className="question-list">
         <Menu tabular>

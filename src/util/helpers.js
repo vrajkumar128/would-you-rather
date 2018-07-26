@@ -3,6 +3,15 @@ const generateUID = () => (
   Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 );
 
+// Format a user-added user for saving to the database
+export const formatUser = ({ id, name, avatarURL }) => ({
+  id,
+  name,
+  avatarURL: avatarURL || "https://svgshare.com/i/7aS.svg",
+  answers: {},
+  questions: []
+});
+
 // Format a user-added question for saving to the database
 export const formatQuestion = ({ optionOneText, optionTwoText, author }) => ({
   id: generateUID(),

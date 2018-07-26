@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Container, Grid } from 'semantic-ui-react';
+import { Container, Grid, Card } from 'semantic-ui-react';
 import './Leaderboard.min.css';
+import Login from '../Login/Login';
 
 // Render the leaderboard header
 const renderHeader = () => (
@@ -13,10 +14,10 @@ const renderHeader = () => (
       <h4>User</h4>
     </Grid.Column>
     <Grid.Column>
-      <h4>Questions Answered</h4>
+      <h4>Questions Asked</h4>
     </Grid.Column>
     <Grid.Column>
-      <h4>Questions Asked</h4>
+      <h4>Questions Answered</h4>
     </Grid.Column>
     <Grid.Column>
       <h4>Score</h4>
@@ -85,11 +86,11 @@ const renderUsers = (users) => {
           />
           <span>{users[rankedUserId].name}</span>
         </Grid.Column>
-        <Grid.Column className="questions-answered">
-          <span>{answersLength(rankedUserId)}</span>
-        </Grid.Column>
         <Grid.Column className="questions-asked">
           <span>{questionsLength(rankedUserId)}</span>
+        </Grid.Column>
+        <Grid.Column className="questions-answered">
+          <span>{answersLength(rankedUserId)}</span>
         </Grid.Column>
         <Grid.Column className="score">
           <span>{answersLength(rankedUserId) + questionsLength(rankedUserId)}</span>
@@ -100,14 +101,24 @@ const renderUsers = (users) => {
 }
 
 // Leaderboard component
-const Leaderboard = ({ authedUser, users }) => (
-  <Container className="leaderboard">
-    <Grid divided="vertically">
-      {renderHeader()}
-      {renderUsers(users)}
-    </Grid>
-  </Container>
-);
+const Leaderboard = ({ authedUser, users }) => {
+  if (!authedUser) {
+    return <Login />;
+  }
+
+  document.title = "Leaderboard";
+
+  return (
+    <Container className="leaderboard">
+    <Card>
+      <Grid divided="vertically">
+        {renderHeader()}
+        {renderUsers(users)}
+      </Grid>
+      </Card>
+    </Container>
+  );
+};
 
 // Grab data from Redux store as props
 const mapStateToProps = ({ authedUser, users }) => ({

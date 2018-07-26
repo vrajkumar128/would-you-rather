@@ -1,0 +1,36 @@
+.add-user {
+  height: 100%;
+  cursor: default;
+
+  .card {
+    margin-top: 5rem !important;
+    text-align: center;
+    width: 50%;
+    height: 35%;
+    margin: 0 auto;
+
+    .form {
+      .inputs {
+        display: flex;
+        align-items: center;
+        margin: 1.75rem 2rem;
+
+        .avatar-input {
+          background-image: url("https://i.imgur.com/QRBJ4ch.jpg");
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
+          border-radius: 100%;
+          width: 100px;
+          height: 100px;
+          margin: 0;
+        }
+
+        .userName {
+          margin-left: 2rem;
+          width: 70%;
+        }
+      }
+    }
+  }
+}

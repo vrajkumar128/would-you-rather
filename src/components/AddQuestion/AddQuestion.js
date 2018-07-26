@@ -35,6 +35,7 @@ class AddQuestion extends React.Component {
     e.preventDefault();
     const { optionOneText, optionTwoText } = this.state;
     const { authedUser, dispatch } = this.props;
+
     const question = {
       optionOneText,
       optionTwoText,
@@ -48,16 +49,18 @@ class AddQuestion extends React.Component {
   }
 
   render() {
-    const { optionOne, optionTwo, toHome } = this.state;
+    const { optionOneText, optionTwoText, toHome } = this.state;
     const { authedUser } = this.props;
+
+    if (toHome) {
+      return <Redirect to="/" />;
+    }
 
     if (!authedUser) {
       return <Login />;
     }
 
-    if (toHome) {
-      return <Redirect to="/" />;
-    }
+    document.title = "Add Question"; // Set page title
 
     return (
       <Container className="add-question">
@@ -71,7 +74,7 @@ class AddQuestion extends React.Component {
                   name="optionOne"
                   type="text"
                   placeholder='Option One'
-                  value={optionOne}
+                  value={optionOneText}
                   onChange={(e) => this.handleChange(e, "one")}
                 />
               </Form.Field>
@@ -81,11 +84,18 @@ class AddQuestion extends React.Component {
                   name="optionOne"
                   type="text"
                   placeholder='Option Two'
-                  value={optionTwo}
+                  value={optionTwoText}
                   onChange={(e) => this.handleChange(e, "two")}
                 />
               </Form.Field>
-              <Button type='submit' size="large" color="blue">Submit</Button>
+              <Button
+                type='submit'
+                size="large"
+                color="blue"
+                disabled={!(optionOneText && optionTwoText)}
+              >
+                Submit
+              </Button>
             </Form>
           </Card.Content>
         </Card>

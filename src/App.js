@@ -7,7 +7,8 @@ import QuestionList from './components/QuestionList/QuestionList';
 import AddQuestion from './components/AddQuestion/AddQuestion';
 import QuestionPage from './components/QuestionPage/QuestionPage';
 import Leaderboard from './components/Leaderboard/Leaderboard';
-import NotFound from './components/NotFound/NotFound';
+import AddUser from './components/AddUser/AddUser';
+import NotFound from './NotFound';
 import LoadingBar from 'react-redux-loading-bar';
 
 class App extends React.Component {
@@ -20,13 +21,14 @@ class App extends React.Component {
     return (
       <Router>
         <Fragment>
-          <LoadingBar />
+          <LoadingBar maxProgress={100} style={{ backgroundColor: "black"}} />
           <Header />
           <Switch>
             <Route exact path="/" component={QuestionList} />
             <Route path="/add" component={AddQuestion} />
             <Route path="/leaderboard" component={Leaderboard} />
             <Route path="/questions/:question_id" component={QuestionPage} />
+            <Route path="/signup" component={AddUser} />
             <Route component={NotFound} />
           </Switch>
         </Fragment>
