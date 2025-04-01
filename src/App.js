@@ -9,7 +9,7 @@ import QuestionPage from './components/QuestionPage/QuestionPage';
 import Leaderboard from './components/Leaderboard/Leaderboard';
 import AddUser from './components/AddUser/AddUser';
 import NotFound from './NotFound';
-import LoadingBar from 'react-redux-loading-bar';
+// import LoadingBar from 'react-redux-loading-bar';
 
 class App extends React.Component {
   componentDidMount() {
@@ -21,7 +21,7 @@ class App extends React.Component {
     return (
       <Router>
         <Fragment>
-          <LoadingBar maxProgress={100} style={{ backgroundColor: "black"}} />
+          {/* <LoadingBar maxProgress={100} style={{ backgroundColor: "black"}} /> */}
           <Header />
           <Switch>
             <Route exact path="/" component={QuestionList} />

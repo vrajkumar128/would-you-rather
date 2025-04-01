@@ -8,15 +8,33 @@ import { Dropdown } from 'semantic-ui-react';
 // Define the navigable pages
 const pages = [
   { href: "/", label: "Home" },
-  { href: "/add", label: "Add Question" },
-  { href: "/leaderboard", label: "Leaderboard" }
+  { href: "/add", label: "Add Question", requiresAuth: true },
+  { href: "/leaderboard", label: "Leaderboard", requiresAuth: false }
 ];
 
+// Check if user is authenticated and show alert if needed
+const handleNavClick = (e, page, authedUser, history) => {
+  if (page.requiresAuth && !authedUser) {
+    e.preventDefault();
+    alert("You must be signed in to add a question!");
+    history.push('/');
+    return false;
+  }
+  return true;
+};
+
 // Render the navigation links
-const renderPages = () => (
+const renderPages = (authedUser, history) => (
   pages.map(page => (
     <li key={page.label}>
-      <NavLink to={page.href} exact activeClassName="active">{page.label}</NavLink>
+      <NavLink
+        to={page.href}
+        exact
+        activeClassName="active"
+        onClick={(e) => handleNavClick(e, page, authedUser, history)}
+      >
+        {page.label}
+      </NavLink>
     </li>
   ))
 );
@@ -44,7 +62,7 @@ const Header = ({ authedUser, users, dispatch, history }) => (
   <header>
     <nav>
       <ul>
-        {renderPages()}
+        {renderPages(authedUser, history)}
       </ul>
     </nav>
     {authedUser && renderAuthedUser(authedUser, users, dispatch, history)}

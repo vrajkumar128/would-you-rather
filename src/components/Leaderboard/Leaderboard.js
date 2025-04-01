@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Container, Grid, Card } from 'semantic-ui-react';
 import './Leaderboard.min.css';
-import Login from '../Login/Login';
 
 // Render the leaderboard header
 const renderHeader = () => (
@@ -46,9 +45,9 @@ const renderUsers = (users) => {
 
   // Return an ordered array of objects containing a user ID and that user's score
   const orderedUserObjects = rankedUserIds.map(rankedUserId => ({
-      id: rankedUserId,
-      score: answersLength(rankedUserId) + questionsLength(rankedUserId)
-    })
+    id: rankedUserId,
+    score: answersLength(rankedUserId) + questionsLength(rankedUserId)
+  })
   );
 
   // Return an array of users ranked by their score while accounting for duplicate scores
@@ -101,28 +100,23 @@ const renderUsers = (users) => {
 }
 
 // Leaderboard component
-const Leaderboard = ({ authedUser, users }) => {
-  if (!authedUser) {
-    return <Login />;
-  }
-
+const Leaderboard = ({ users }) => {
   document.title = "Leaderboard";
 
   return (
     <Container className="leaderboard">
-    <Card>
-      <Grid divided="vertically">
-        {renderHeader()}
-        {renderUsers(users)}
-      </Grid>
+      <Card>
+        <Grid divided="vertically">
+          {renderHeader()}
+          {renderUsers(users)}
+        </Grid>
       </Card>
     </Container>
   );
 };
 
 // Grab data from Redux store as props
-const mapStateToProps = ({ authedUser, users }) => ({
-  authedUser,
+const mapStateToProps = ({ users }) => ({
   users
 });
 
