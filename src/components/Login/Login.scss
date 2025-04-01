@@ -14,6 +14,11 @@
       color: #0D95F2;
     }
 
+    // Add the blue spinner style here
+    .blue-spinner {
+      filter: hue-rotate(190deg) saturate(200%);
+    }
+
     ul {
       list-style: none;
       padding-left: 0;

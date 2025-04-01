@@ -7,7 +7,7 @@ const generateUID = () => (
 export const formatUser = ({ id, name, avatarURL }) => ({
   id,
   name,
-  avatarURL: avatarURL || "https://svgshare.com/i/7aS.svg",
+  avatarURL: avatarURL || "/assets/images/add-user.png",
   answers: {},
   questions: []
 });

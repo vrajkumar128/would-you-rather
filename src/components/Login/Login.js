@@ -35,7 +35,7 @@ const renderUsers = (users, dispatch) => (
 
 // Render a loading spinner
 const renderLoading = () => (
-  <img src="https://svgshare.com/i/7_H.svg" title="Loading" alt="Loading spinner" />
+  <img src="/assets/images/Rolling-1s-50px.svg" title="Loading" alt="Loading spinner" className="blue-spinner" />
 );
 
 // Login component
