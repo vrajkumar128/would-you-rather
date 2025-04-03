@@ -5,8 +5,8 @@ A React app that is part of [Udacity's React Nanodegree](https://www.udacity.com
 To run locally:
 
 <ol>
-  <li>Run `git clone https://github.com/vrajkumar128/would-you-rather.git`.</li>
-  <li>`cd` into the cloned directory.</li>
-  <li>Run `npm install && npm start`.</li>
-  <li>Navigate to `localhost:3000` from a web browser.</li>
+  <li>Run <code>git clone https://github.com/vrajkumar128/would-you-rather.git</code>.</li>
+  <li><code>cd</code> into the cloned directory.</li>
+  <li>Run <code>npm install && npm start</code>.</li>
+  <li>Navigate to <code>localhost:3000</code> from a web browser.</li>
 </ol>
