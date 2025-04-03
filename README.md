@@ -1,4 +1,4 @@
-# [Would You Rather (Udacity Project)](https://would-you-rather-vrrajkum.vercel.app/)
+# [Would You Rather (Udacity React Nanodegree Project)](https://would-you-rather-vrrajkum.vercel.app/)
 
 A React app that lets you play the "Would You Rather?" game in your browser. Uses Redux for state management and is enhanced with a leaderboard and the ability to add new questions & users.
 
