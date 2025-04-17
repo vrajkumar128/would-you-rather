@@ -90,7 +90,7 @@ class AddUser extends React.Component {
                           accept="image/*"
                           onChange={this.handleFileChange}
                         />
-                        <label htmlFor="avatar-upload">Choose file</label>
+                        <label htmlFor="avatar-upload">Upload photo</label>
                       </div>
                     )}
                   </div>

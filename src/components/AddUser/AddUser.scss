@@ -34,17 +34,18 @@
               background-color: #f0f0f0;
               border: 2px dashed #0D95F2;
               border-radius: 100%;
+              cursor: pointer;
 
               input[type="file"] {
                 display: none;
               }
 
               label {
-                cursor: pointer;
                 color: #0D95F2;
                 font-weight: bold;
                 padding: 10px;
                 text-align: center;
+                cursor: pointer;
               }
             }
 
